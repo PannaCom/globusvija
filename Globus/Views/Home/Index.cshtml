@@ -6,30 +6,7 @@
             	<section id="slider">
                     <div id="slideritems" class="flexslider">
                         <ul class="slides">
-                            <li>
-                                <img src="/Content/images/content/slide1.jpg" alt="" />
-                                <div class="flex-caption">
-                                    <h1>Clean and Professional Business Template</h1>
-                                    <p>Pellentesque auctor vehicula sapien, et lacinia neque convallis ac.</p>
-                                    <a href="#" class="button">Read more</a>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="/Content/images/content/slide2.jpg" alt="" />
-                                <div class="flex-caption">
-                                    <h1>Develop and Advance Your Business with Us</h1>
-                                    <p>Pellentesque auctor vehicula sapien, et lacinia neque convallis ac.</p>
-                                    <a href="#" class="button">Read more</a>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="/Content/images/content/slide3.jpg" alt="" />
-                                <div class="flex-caption">
-                                    <h1>Create Your Business Strategy with Us</h1>
-                                    <p>Pellentesque auctor vehicula sapien, et lacinia neque convallis ac.</p>
-                                    <a href="#" class="button">Read more</a>
-                                </div>
-                            </li>
+                            @Html.Raw(@ViewBag.slide)
                         </ul>
                     </div>
                 </section>
