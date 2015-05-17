@@ -1,4 +1,4 @@
-﻿@model Globus.Models.slide
+﻿@model Globus.Models.about
 
 @{
     ViewBag.Title = "Delete";
@@ -9,27 +9,12 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <fieldset>
-   
-
+    
     <div class="display-label">
-         <h4>Slogan</h4>
+         <h3>Title</h3>
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.slogan)
-    </div>
-
-    <div class="display-label">
-         <h4>Description</h4>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.des)
-    </div>
-
-    <div class="display-label">
-         <h4>No</h4>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.no)
+        @Model.title
     </div>
 </fieldset>
 @using (Html.BeginForm()) {

@@ -1,37 +1,39 @@
-﻿@model Globus.Models.slide
+﻿@model Globus.Models.about
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Update Slide</h2>
+<h2>Add New About</h2>
 
-@using (Html.BeginForm("Edit", "slide", FormMethod.Post, new { id = "EditForm" }))
+@using (Html.BeginForm("Edit", "about", FormMethod.Post, new { id = "EditForm" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    <fieldset>
+    <fieldset style="padding-left:5px;">
         <div class="form-group">
-                <label for="room" style="width:auto;display:block;">Slogan</label>
-                <input name="slogan" type="text" id="slogan" value="@Model.slogan" class="form-control" style="width:60%;" placeholder="Gõ slogan "/>
-                @Html.ValidationMessageFor(model => model.slogan)
+                <label for="room" style="width:auto;display:block;">Title</label>
+                <input name="title" type="text" id="title" value="@Model.title" class="form-control" style="width:60%;" placeholder="Gõ title"/>
+                @Html.ValidationMessageFor(model => model.title)
         </div>
         <div class="form-group">
                 <label for="room" style="width:auto;display:block;">Description</label>
-                <textarea name="des" id="des" class="form-control" >
+                <textarea name="des" id="des" class="form-control">
                     @Model.des
                 </textarea>
                 @Html.ValidationMessageFor(model => model.des)
         </div>
         <div class="form-group">
-                <label for="room" style="width:auto;display:block;">Link to</label>
-                <input name="link" type="text" id="link" value="@Model.link" class="form-control" style="width:60%;" placeholder="Link to"/>
-                @Html.ValidationMessageFor(model => model.link)
+                 <label for="room" style="width:auto;display:block;">Full Content</label>
+                <textarea name="fullcontent" id="fullcontent" class="form-control" rows="50" style="height:101px;">
+                    @Model.fullcontent
+                </textarea>
+                @Html.ValidationMessageFor(model => model.fullcontent)
         </div>
         <div class="col-md-6">
               <div class="form-group">
-                <label for="room" style="width:auto;display:block;">Upload Image Slide</label>
+                <label for="room" style="width:auto;display:block;">Upload Image</label>
                 <input name="imageFile" type="file" id="imageFile" value="" multiple="multiple" class="form-control" runat="server" onchange="uploadProcess();"/>                                
                 <div id="progressbar" class="progressbar">
                     <div id="progresslabel" class="progressbarlabel"></div>
@@ -45,19 +47,8 @@
                 <div id="imageShow" style="width:600px;height:200px;display:none;"><img src="@Model.image" style="width:600px;height:200px;"></div>
               </div>
          </div>
-         <div class="form-group">
-                <label for="room" style="width:auto;display:block;">Order No</label>
-                <select class="form-control" name="no" id="no">
-                    <option value="1" selected>1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-                @Html.ValidationMessageFor(model => model.no)
-        </div>
-        <div class="col-md-6" style="text-align:center;">
-            <input type="button" class="btn btn-info" onclick="checkField();" value="Update" style="height:50px;width:100px;"/>
+        <div class="col-md-6" style="text-align:center;padding-top:40px;">
+            <input type="button" onclick="checkField();" value="Update" style="height:50px;width:100px;"/>
         </div>
     </fieldset>
 }
@@ -69,10 +60,9 @@
 </div>
 
 <script>
-    if ("@Model.image"!=""){
+    if ("@Model.image" != "") {
         $("#imageShow").show();
     }
-    document.getElementById("no").value=@Model.no;
     //Image upload
     function uploadProcess() {
 
@@ -93,7 +83,7 @@
                 $("#progressbar").progressbar("value", progress);
             }
         }, false);
-        xhr.open('POST', '/slide/UploadImageProcess');
+        xhr.open('POST', '/about/UploadImageProcess');
         xhr.send(formdata);
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
@@ -118,9 +108,9 @@
 
     evt.preventDefault();
     function checkField() {
-        if (document.getElementById("slogan").value == "") {
-            alert("enter slogan!");
-            document.getElementById("slogan").focus();
+        if (document.getElementById("title").value == "") {
+            alert("enter title!");
+            document.getElementById("title").focus();
             return false;
         }
         if (document.getElementById("des").value == "") {
@@ -128,8 +118,13 @@
             document.getElementById("des").focus();
             return false;
         }
+        if (document.getElementById("fullcontent").value == "") {
+            alert("enter full content!");
+            document.getElementById("fullcontent").focus();
+            return false;
+        }
         if (document.getElementById("image").value == "") {
-            alert("upload image slide!");
+            alert("upload image!");
             return false;
         }
         document.getElementById("EditForm").submit();

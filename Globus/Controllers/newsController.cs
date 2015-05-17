@@ -11,33 +11,33 @@ using System.Drawing.Drawing2D;
 
 namespace Globus.Controllers
 {
-    public class slideController : Controller
+    public class newsController : Controller
     {
         private DB_9C4C62_globusEntities db = new DB_9C4C62_globusEntities();
 
         //
-        // GET: /slide/
+        // GET: /news/
 
         public ActionResult Index()
         {
-            return View(db.slides.ToList());
+            return View(db.news.ToList());
         }
 
         //
-        // GET: /slide/Details/5
+        // GET: /news/Details/5
 
         public ActionResult Details(int id = 0)
         {
-            slide slide = db.slides.Find(id);
-            if (slide == null)
+            news news = db.news.Find(id);
+            if (news == null)
             {
                 return HttpNotFound();
             }
-            return View(slide);
+            return View(news);
         }
 
         //
-        // GET: /slide/Create
+        // GET: /news/Create
 
         public ActionResult Create()
         {
@@ -45,55 +45,26 @@ namespace Globus.Controllers
         }
 
         //
-        // POST: /slide/Create
+        // POST: /news/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(slide slide)
+        public ActionResult Create(news news)
         {
             if (ModelState.IsValid)
             {
-                db.slides.Add(slide);
+                db.news.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(slide);
-        }
-
-        //
-        // GET: /slide/Edit/5
-
-        public ActionResult Edit(int id = 0)
-        {
-            slide slide = db.slides.Find(id);
-            if (slide == null)
-            {
-                return HttpNotFound();
-            }
-            return View(slide);
-        }
-
-        //
-        // POST: /slide/Edit/5
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(slide slide)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(slide).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(slide);
+            return View(news);
         }
         [HttpPost]
         [AcceptVerbs(HttpVerbs.Post)]
         public string UploadImageProcess(HttpPostedFileBase file, string filename)
         {
-            string physicalPath = HttpContext.Server.MapPath("../" + Config.SlideImagePath + "\\");
+            string physicalPath = HttpContext.Server.MapPath("../" + Config.NewsImagePath + "\\");
             string nameFile = String.Format("{0}.jpg", Guid.NewGuid().ToString());
             int countFile = Request.Files.Count;
             string fullPath = physicalPath + System.IO.Path.GetFileName(nameFile);
@@ -106,8 +77,8 @@ namespace Globus.Controllers
                 Request.Files[i].SaveAs(fullPath);
                 break;
             }
-            string ok = resizeImage(Config.imgWidthBigSlide, Config.imgHeightBigSlide, fullPath, Config.SlideImagePath + "/" + nameFile);
-            return Config.SlideImagePath + "/" + nameFile;
+            string ok = resizeImage(Config.imgWidthBigNews, Config.imgHeightBigNews, fullPath, Config.NewsImagePath + "/" + nameFile);
+            return Config.NewsImagePath + "/" + nameFile;
         }
         public string resizeImage(int maxWidth, int maxHeight, string fullPath, string path)
         {
@@ -133,27 +104,56 @@ namespace Globus.Controllers
             return fileRelativePath;
         }
         //
-        // GET: /slide/Delete/5
+        // GET: /news/Edit/5
 
-        public ActionResult Delete(int id = 0)
+        public ActionResult Edit(int id = 0)
         {
-            slide slide = db.slides.Find(id);
-            if (slide == null)
+            news news = db.news.Find(id);
+            if (news == null)
             {
                 return HttpNotFound();
             }
-            return View(slide);
+            return View(news);
         }
 
         //
-        // POST: /slide/Delete/5
+        // POST: /news/Edit/5
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(news news)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(news).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(news);
+        }
+
+        //
+        // GET: /news/Delete/5
+
+        public ActionResult Delete(int id = 0)
+        {
+            news news = db.news.Find(id);
+            if (news == null)
+            {
+                return HttpNotFound();
+            }
+            return View(news);
+        }
+
+        //
+        // POST: /news/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            slide slide = db.slides.Find(id);
-            db.slides.Remove(slide);
+            news news = db.news.Find(id);
+            db.news.Remove(news);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

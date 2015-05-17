@@ -687,6 +687,7 @@ thead th {
 }
 tr td {
 	padding: 6px 24px;
+    vertical-align:top;
 }
 tr.odd td {}
 

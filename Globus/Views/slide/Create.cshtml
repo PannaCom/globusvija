@@ -55,9 +55,9 @@
                 </select>
                 @Html.ValidationMessageFor(model => model.no)
         </div>
-        <p>
-            <input type="button" class="btn btn-info" onclick="checkField();" value="Add New" />
-        </p>
+        <div class="col-md-6" style="text-align:center;">
+            <input type="button" class="btn btn-info" onclick="checkField();" value="Create" style="height:50px;width:100px;"/>
+        </div>
     </fieldset>
 }
 <div id="loadingImage" name="loadingImage" style="z-index:1000;position:fixed;left:40%;top:30%;width:32px;height:32px;display:none;">
