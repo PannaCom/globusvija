@@ -51,6 +51,27 @@ namespace Globus.Controllers
 
             }
             ViewBag.about = about;
+            string news = "";
+            try
+            {
+                var p2 = (from q in db.news select new { title = q.title, des = q.des, fullcontent = q.fullcontent, image = q.image, id = q.id }).OrderByDescending(o => o.id).Take(2).ToList();
+                for (int i = 0; i < p2.Count; i++)
+                {
+                    var it=p2[i];
+                    news+="<div class=\"four columns alpha\">";
+                    news+="<img src=\""+it.image+"\" alt=\""+it.title+"\" class=\"alignnone scale-with-grid\"/>";
+                    news+="<h3 class=\"smallmargin\">"+it.title+"</h3>";
+                    news+="<p>"+it.des+"</p>";
+                    news+="<p><a href=\"/news/"+Config.unicodeToNoMark(it.title)+"-"+it.id+"\" class=\"button\">Read more</a></p>";
+                    news+="</div>";
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            ViewBag.news = news;
             return View();
         }
 
