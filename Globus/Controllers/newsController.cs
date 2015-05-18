@@ -48,6 +48,7 @@ namespace Globus.Controllers
         // POST: /news/Create
 
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Create(news news)
         {
@@ -120,6 +121,7 @@ namespace Globus.Controllers
         // POST: /news/Edit/5
 
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(news news)
         {

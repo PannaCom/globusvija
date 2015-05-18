@@ -5,59 +5,132 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Edit</h2>
-
-@using (Html.BeginForm()) {
+<h2>Update News</h2>
+<script src="/Scripts/ckeditor/ckeditor.js"></script>
+@using (Html.BeginForm("Edit", "news", FormMethod.Post, new { id = "EditForm" }))
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>news</legend>
-
-        @Html.HiddenFor(model => model.id)
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.title)
+    <fieldset style="padding-left:5px;">
+        <div class="form-group">
+                <label for="room" style="width:auto;display:block;">Title</label>
+                <input name="title" type="text" id="title" value="@Model.title" class="form-control" style="width:60%;" placeholder="Gõ title"/>
+                @Html.ValidationMessageFor(model => model.title)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.title)
-            @Html.ValidationMessageFor(model => model.title)
+        <div class="form-group">
+                <label for="room" style="width:auto;display:block;">Description</label>
+                <textarea name="des" id="des" class="form-control" >
+                    @Model.des
+                </textarea>
+                @Html.ValidationMessageFor(model => model.des)
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.des)
+        <div class="form-group">
+                 <label for="room" style="width:auto;display:block;">Full Content</label>
+                <textarea name="fullcontent" id="fullcontent" rows="20" cols="80">
+                     @Model.fullcontent
+                </textarea>
+                <script>
+                    CKEDITOR.replace('fullcontent');
+                </script>  
+                @Html.ValidationMessageFor(model => model.fullcontent)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.des)
-            @Html.ValidationMessageFor(model => model.des)
+        <div class="col-md-6">
+              <div class="form-group">
+                <label for="room" style="width:auto;display:block;">Upload Image News</label>
+                <input name="imageFile" type="file" id="imageFile" value="" multiple="multiple" class="form-control" runat="server" onchange="uploadProcess();"/>                                
+                <div id="progressbar" class="progressbar">
+                    <div id="progresslabel" class="progressbarlabel"></div>
+                 </div>  
+              </div>
+         </div> 
+         <div class="col-md-6">
+              <div class="form-group">
+                <label for="room" style="width:auto;display:block;">Image</label>
+                <input name="image" type="hidden" id="image" value="@Model.image" class="form-control" />                  
+                <div id="imageShow" style="width:600px;height:200px;display:none;"><img src="@Model.image" width="600" height="200"></div>
+              </div>
+         </div>
+        <div class="col-md-6" style="text-align:center;">
+            <input type="button" onclick="checkField();" value="Update" style="height:50px;width:100px;"/>
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.fullcontent)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.fullcontent)
-            @Html.ValidationMessageFor(model => model.fullcontent)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.image)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.image)
-            @Html.ValidationMessageFor(model => model.image)
-        </div>
-
-        <p>
-            <input type="submit" value="Save" />
-        </p>
     </fieldset>
 }
-
+<div id="loadingImage" name="loadingImage" style="z-index:1000;position:fixed;left:40%;top:30%;width:32px;height:32px;display:none;">
+    <img src="/Images/loading.gif">
+</div>
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<script>
+    if ("@Model.image" != "") {
+        $("#imageShow").show();
+    }
+    //Image upload
+    function uploadProcess() {
+
+        var formdata = new FormData(); //FormData object
+        var fileInput = document.getElementById('imageFile');
+        for (i = 0; i < fileInput.files.length; i++) {
+            //Appending each file to FormData object
+            formdata.append(fileInput.files[i].name, fileInput.files[i]);
+            break;
+        }
+
+        formdata.append("filename", "noname");
+        showLoadingImage();
+        var xhr = new XMLHttpRequest();
+        xhr.upload.addEventListener("progress", function (evt) {
+            if (evt.lengthComputable) {
+                var progress = Math.round(evt.loaded * 100 / evt.total);
+                $("#progressbar").progressbar("value", progress);
+            }
+        }, false);
+        xhr.open('POST', '/news/UploadImageProcess');
+        xhr.send(formdata);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                $('#imageShow').show();
+                $('#imageShow').html("<img src=\"" + xhr.responseText + "\" width=600 height=200>");
+                $('#image').val(xhr.responseText);
+                hideLoadingImage();
+            }
+        }
+        return false;
+    }
+
+    $("#progressbar").progressbar({
+        max: 100,
+        change: function (evt, ui) {
+            $("#progresslabel").text($("#progressbar").progressbar("value") + "%");
+        },
+        complete: function (evt, ui) {
+            $("#progresslabel").text("File upload successful!");
+        }
+    });
+
+    evt.preventDefault();
+    function checkField() {
+        if (document.getElementById("title").value == "") {
+            alert("enter title!");
+            document.getElementById("title").focus();
+            return false;
+        }
+        if (document.getElementById("des").value == "") {
+            alert("enter description!");
+            document.getElementById("des").focus();
+            return false;
+        }
+        if (document.getElementById("fullcontent").value == "") {
+            alert("enter full content!");
+            document.getElementById("fullcontent").focus();
+            return false;
+        }
+        if (document.getElementById("image").value == "") {
+            alert("upload image!");
+            return false;
+        }
+        document.getElementById("EditForm").submit();
+    }
+
+</script>

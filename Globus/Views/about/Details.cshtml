@@ -5,18 +5,9 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
-
-<fieldset>
-    <legend>about</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.fullcontent)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.fullcontent)
-    </div>
-</fieldset>
+<h1>@Model.title</h1>
+<h3>@Model.des</h3>
+<p>@Html.Raw(@Model.fullcontent)</p>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
     @Html.ActionLink("Back to List", "Index")
