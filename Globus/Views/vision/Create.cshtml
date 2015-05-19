@@ -1,0 +1,96 @@
+﻿@model Globus.Models.vision
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Add New Our Vision</h2>
+
+@using (Html.BeginForm("Create", "vision", FormMethod.Post, new { id = "EditForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset style="padding-left:5px;">
+        <div class="form-group">
+                <label for="room" style="width:auto;display:block;">Vision 1</label>
+                <input name="vision1" type="text" id="vision1" value="" class="form-control" style="width:60%;" placeholder="Gõ vision 1"/>
+                @Html.ValidationMessageFor(model => model.vision1)
+        </div>
+        <div class="form-group">
+                <label for="room" style="width:auto;display:block;">Description</label>
+                <textarea name="des1" id="des1" class="form-control" rows="50" style="height:101px;">
+                </textarea>
+                @Html.ValidationMessageFor(model => model.des1)
+        </div>
+        <div class="form-group">
+                <label for="room" style="width:auto;display:block;">Vision 2</label>
+                <input name="vision2" type="text" id="vision2" value="" class="form-control" style="width:60%;" placeholder="Gõ vision 2"/>
+                @Html.ValidationMessageFor(model => model.vision2)
+        </div>
+        <div class="form-group">
+                <label for="room" style="width:auto;display:block;">Description</label>
+                <textarea name="des2" id="des2" class="form-control" rows="50" style="height:101px;">
+                </textarea>
+                @Html.ValidationMessageFor(model => model.des2)
+        </div>
+        <div class="form-group">
+                <label for="room" style="width:auto;display:block;">Vision 3</label>
+                <input name="vision3" type="text" id="vision3" value="" class="form-control" style="width:60%;" placeholder="Gõ vision 3"/>
+                @Html.ValidationMessageFor(model => model.vision3)
+        </div>
+        <div class="form-group">
+                <label for="room" style="width:auto;display:block;">Description</label>
+                <textarea name="des3" id="des3" class="form-control" rows="50" style="height:101px;">
+                </textarea>
+                @Html.ValidationMessageFor(model => model.des3)
+        </div>
+        <div class="col-md-6" style="text-align:center;">
+            <input type="button" onclick="checkField();" value="Create" style="height:50px;width:100px;"/>
+        </div>
+    </fieldset>
+}
+<div id="loadingImage" name="loadingImage" style="z-index:1000;position:fixed;left:40%;top:30%;width:32px;height:32px;display:none;">
+    <img src="/Images/loading.gif">
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script>
+
+    function checkField() {
+        if (document.getElementById("vision1").value == "") {
+            alert("enter vision 1!");
+            document.getElementById("vision1").focus();
+            return false;
+        }
+        if (document.getElementById("des1").value == "") {
+            alert("enter description!");
+            document.getElementById("des1").focus();
+            return false;
+        }
+        if (document.getElementById("vision2").value == "") {
+            alert("enter vision 2!");
+            document.getElementById("vision2").focus();
+            return false;
+        }
+        if (document.getElementById("des2").value == "") {
+            alert("enter description!");
+            document.getElementById("des2").focus();
+            return false;
+        }
+        if (document.getElementById("vision3").value == "") {
+            alert("enter vision 3!");
+            document.getElementById("vision3").focus();
+            return false;
+        }
+        if (document.getElementById("des3").value == "") {
+            alert("enter description!");
+            document.getElementById("des3").focus();
+            return false;
+        }
+        document.getElementById("EditForm").submit();
+    }
+
+</script>

@@ -72,6 +72,41 @@ namespace Globus.Controllers
 
             }
             ViewBag.news = news;
+            string vision = "";
+            try
+            {
+                var p3 = (from q in db.visions select new { v1=q.vision1,d1=q.des1,v2=q.vision2,d2=q.des2,v3=q.vision3,d3=q.des3}).FirstOrDefault();
+               
+                    
+                    vision += "<li>";
+                    vision += "<img src=\"/Content/images/icon/date.png\"  class=\"alignleft\">";
+                    vision +="<div class=\"lp\">";
+                    vision += "<h3><a href=\"#\">"+p3.v1+"</a></h3>";
+                    vision += "<span>" + p3.d1 + "</span>";                    
+                    vision += "</div>";
+                    vision += "</li>";
+                    vision += "<li>";
+                    vision += "<img src=\"/Content/images/icon/date.png\"  class=\"alignleft\">";
+                    vision += "<div class=\"lp\">";
+                    vision += "<h3><a href=\"#\">" + p3.v2 + "</a></h3>";
+                    vision += "<span>" + p3.d2 + "</span>";
+                    vision += "</div>";
+                    vision += "</li>";
+                    vision += "<li>";
+                    vision += "<img src=\"/Content/images/icon/date.png\"  class=\"alignleft\">";
+                    vision += "<div class=\"lp\">";
+                    vision += "<h3><a href=\"#\">" + p3.v3 + "</a></h3>";
+                    vision += "<span>" + p3.d3 + "</span>";
+                    vision += "</div>";
+                    vision += "</li>";
+
+               
+            }
+            catch (Exception ex)
+            {
+
+            }
+            ViewBag.vision = vision;
             return View();
         }
 

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Globus.Models.vision>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.vision1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vision2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vision3)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.vision1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vision2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vision3)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) 
+        </td>
+    </tr>
+}
+
+</table>
