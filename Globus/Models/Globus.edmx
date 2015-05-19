@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB_9C4C62_globusModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="DB_9C4C62_globusModelStoreContainer">
+          <EntitySet Name="about" EntityType="DB_9C4C62_globusModel.Store.about" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="contact" EntityType="DB_9C4C62_globusModel.Store.contact" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="download" EntityType="DB_9C4C62_globusModel.Store.download" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="home" EntityType="DB_9C4C62_globusModel.Store.home" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="hotline" EntityType="DB_9C4C62_globusModel.Store.hotline" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="news" EntityType="DB_9C4C62_globusModel.Store.news" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="project" EntityType="DB_9C4C62_globusModel.Store.project" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="skills" EntityType="DB_9C4C62_globusModel.Store.skills" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="slide" EntityType="DB_9C4C62_globusModel.Store.slide" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="vision" EntityType="DB_9C4C62_globusModel.Store.vision" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="about">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="nvarchar" MaxLength="150" />
+          <Property Name="image" Type="nvarchar" MaxLength="150" />
+          <Property Name="des" Type="nvarchar" MaxLength="550" />
+          <Property Name="fullcontent" Type="ntext" />
+        </EntityType>
+        <EntityType Name="contact">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="image" Type="nvarchar" MaxLength="150" />
+          <Property Name="des" Type="nvarchar" MaxLength="550" />
+          <Property Name="fullcontent" Type="ntext" />
+          <Property Name="address" Type="nvarchar" MaxLength="150" />
+          <Property Name="lon" Type="float" />
+          <Property Name="lat" Type="float" />
+        </EntityType>
+        <EntityType Name="download">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="nvarchar" MaxLength="150" />
+          <Property Name="filepath" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="home">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="nvarchar" MaxLength="150" />
+          <Property Name="des" Type="nvarchar" MaxLength="550" />
+          <Property Name="fullcontent" Type="ntext" />
+        </EntityType>
+        <EntityType Name="hotline">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="line" Type="ntext" />
+        </EntityType>
+        <EntityType Name="news">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="nvarchar" MaxLength="450" />
+          <Property Name="des" Type="nvarchar" MaxLength="550" />
+          <Property Name="fullcontent" Type="ntext" />
+          <Property Name="image" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="project">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="nvarchar" MaxLength="150" />
+          <Property Name="des" Type="nvarchar" MaxLength="550" />
+          <Property Name="fullcontent" Type="ntext" />
+          <Property Name="image" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="skills">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="des" Type="nvarchar" MaxLength="550" />
+          <Property Name="skill1" Type="nvarchar" MaxLength="550" />
+          <Property Name="des1" Type="nvarchar" MaxLength="550" />
+          <Property Name="skill2" Type="nvarchar" MaxLength="550" />
+          <Property Name="des2" Type="nvarchar" MaxLength="550" />
+          <Property Name="skill3" Type="nvarchar" MaxLength="550" />
+          <Property Name="des3" Type="nvarchar" MaxLength="550" />
+        </EntityType>
+        <EntityType Name="slide">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="slogan" Type="nvarchar" MaxLength="150" />
+          <Property Name="des" Type="nvarchar" MaxLength="550" />
+          <Property Name="image" Type="nvarchar" MaxLength="150" />
+          <Property Name="no" Type="int" />
+          <Property Name="link" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="vision">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="vision1" Type="nvarchar" MaxLength="501" />
+          <Property Name="des1" Type="nvarchar" MaxLength="501" />
+          <Property Name="vision2" Type="nvarchar" MaxLength="502" />
+          <Property Name="des2" Type="nvarchar" MaxLength="502" />
+          <Property Name="vision3" Type="nvarchar" MaxLength="503" />
+          <Property Name="des3" Type="nvarchar" MaxLength="503" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_9C4C62_globusModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DB_9C4C62_globusEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="downloads" EntityType="DB_9C4C62_globusModel.download" />
+          <EntitySet Name="homes" EntityType="DB_9C4C62_globusModel.home" />
+          <EntitySet Name="projects" EntityType="DB_9C4C62_globusModel.project" />
+          <EntitySet Name="slides" EntityType="DB_9C4C62_globusModel.slide" />
+          <EntitySet Name="abouts" EntityType="DB_9C4C62_globusModel.about" />
+          <EntitySet Name="contacts" EntityType="DB_9C4C62_globusModel.contact" />
+          <EntitySet Name="news" EntityType="DB_9C4C62_globusModel.news" />
+          <EntitySet Name="visions" EntityType="DB_9C4C62_globusModel.vision" />
+          <EntitySet Name="hotlines" EntityType="DB_9C4C62_globusModel.hotline" />
+          <EntitySet Name="skills" EntityType="DB_9C4C62_globusModel.skill" />
+        </EntityContainer>
+        <EntityType Name="download">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="filepath" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="home">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="des" Type="String" MaxLength="550" Unicode="true" FixedLength="false" />
+          <Property Name="fullcontent" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="project">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="des" Type="String" MaxLength="550" Unicode="true" FixedLength="false" />
+          <Property Name="fullcontent" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="image" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="slide">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="slogan" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="des" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="image" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="no" />
+          <Property Type="String" Name="link" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="about">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="title" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="image" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="des" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="fullcontent" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="contact">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="image" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="des" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="fullcontent" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="address" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="lon" />
+          <Property Type="Double" Name="lat" />
+        </EntityType>
+        <EntityType Name="news">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="title" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="des" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="fullcontent" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="image" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vision">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="vision1" MaxLength="501" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="des1" MaxLength="501" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="vision2" MaxLength="502" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="des2" MaxLength="502" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="vision3" MaxLength="503" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="des3" MaxLength="503" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="hotline">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="line" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="skill">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="des" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="skill1" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="des1" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="skill2" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="des2" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="skill3" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="des3" MaxLength="550" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_9C4C62_globusModelStoreContainer" CdmEntityContainer="DB_9C4C62_globusEntities">
+          <EntitySetMapping Name="downloads">
+            <EntityTypeMapping TypeName="DB_9C4C62_globusModel.download">
+              <MappingFragment StoreEntitySet="download">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="filepath" ColumnName="filepath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="homes">
+            <EntityTypeMapping TypeName="DB_9C4C62_globusModel.home">
+              <MappingFragment StoreEntitySet="home">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="des" ColumnName="des" />
+                <ScalarProperty Name="fullcontent" ColumnName="fullcontent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="projects">
+            <EntityTypeMapping TypeName="DB_9C4C62_globusModel.project">
+              <MappingFragment StoreEntitySet="project">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="des" ColumnName="des" />
+                <ScalarProperty Name="fullcontent" ColumnName="fullcontent" />
+                <ScalarProperty Name="image" ColumnName="image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="slides">
+            <EntityTypeMapping TypeName="DB_9C4C62_globusModel.slide">
+              <MappingFragment StoreEntitySet="slide">
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="no" ColumnName="no" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="des" ColumnName="des" />
+                <ScalarProperty Name="slogan" ColumnName="slogan" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="abouts">
+            <EntityTypeMapping TypeName="DB_9C4C62_globusModel.about">
+              <MappingFragment StoreEntitySet="about">
+                <ScalarProperty Name="fullcontent" ColumnName="fullcontent" />
+                <ScalarProperty Name="des" ColumnName="des" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contacts">
+            <EntityTypeMapping TypeName="DB_9C4C62_globusModel.contact">
+              <MappingFragment StoreEntitySet="contact">
+                <ScalarProperty Name="lat" ColumnName="lat" />
+                <ScalarProperty Name="lon" ColumnName="lon" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="fullcontent" ColumnName="fullcontent" />
+                <ScalarProperty Name="des" ColumnName="des" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="news">
+            <EntityTypeMapping TypeName="DB_9C4C62_globusModel.news">
+              <MappingFragment StoreEntitySet="news">
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="fullcontent" ColumnName="fullcontent" />
+                <ScalarProperty Name="des" ColumnName="des" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="visions">
+            <EntityTypeMapping TypeName="DB_9C4C62_globusModel.vision">
+              <MappingFragment StoreEntitySet="vision">
+                <ScalarProperty Name="des3" ColumnName="des3" />
+                <ScalarProperty Name="vision3" ColumnName="vision3" />
+                <ScalarProperty Name="des2" ColumnName="des2" />
+                <ScalarProperty Name="vision2" ColumnName="vision2" />
+                <ScalarProperty Name="des1" ColumnName="des1" />
+                <ScalarProperty Name="vision1" ColumnName="vision1" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hotlines">
+            <EntityTypeMapping TypeName="DB_9C4C62_globusModel.hotline">
+              <MappingFragment StoreEntitySet="hotline">
+                <ScalarProperty Name="line" ColumnName="line" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="skills">
+            <EntityTypeMapping TypeName="DB_9C4C62_globusModel.skill">
+              <MappingFragment StoreEntitySet="skills">
+                <ScalarProperty Name="des3" ColumnName="des3" />
+                <ScalarProperty Name="skill3" ColumnName="skill3" />
+                <ScalarProperty Name="des2" ColumnName="des2" />
+                <ScalarProperty Name="skill2" ColumnName="skill2" />
+                <ScalarProperty Name="des1" ColumnName="des1" />
+                <ScalarProperty Name="skill1" ColumnName="skill1" />
+                <ScalarProperty Name="des" ColumnName="des" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

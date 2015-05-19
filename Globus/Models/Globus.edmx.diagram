@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="612c57ffb082447cbc4adcfdbc6ff139" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_9C4C62_globusModel.download" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9C4C62_globusModel.home" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9C4C62_globusModel.project" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9C4C62_globusModel.slide" Width="1.5" PointX="11.80130006736205" PointY="5.9536395845718868" />
+        <EntityTypeShape EntityType="DB_9C4C62_globusModel.about" Width="1.5" PointX="4.151232240792007" PointY="7.5906004494012338" />
+        <EntityTypeShape EntityType="DB_9C4C62_globusModel.contact" Width="1.5" PointX="0.62565848446714623" PointY="23.236088614555118" />
+        <EntityTypeShape EntityType="DB_9C4C62_globusModel.news" Width="1.5" PointX="8.999409236479277" PointY="22.984979297493108" />
+        <EntityTypeShape EntityType="DB_9C4C62_globusModel.vision" Width="1.5" PointX="1.3136696560837653" PointY="21.542843187946289" />
+        <EntityTypeShape EntityType="DB_9C4C62_globusModel.hotline" Width="1.5" PointX="8.1631531548514751" PointY="1.7818404742432015" />
+        <EntityTypeShape EntityType="DB_9C4C62_globusModel.skill" Width="1.5" PointX="7.8666397705053166" PointY="18.110141941397519" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
