@@ -1,0 +1,65 @@
+﻿@model Globus.Models.skill
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>skill</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.des)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.des)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.skill1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.skill1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.des1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.des1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.skill2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.skill2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.des2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.des2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.skill3)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.skill3)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.des3)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.des3)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

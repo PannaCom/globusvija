@@ -1,21 +1,27 @@
-﻿@model Globus.Models.vision
+﻿@model Globus.Models.skill
 
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Add New Our Vision</h2>
+<h2>Add New Our Skill</h2>
 
-@using (Html.BeginForm("Create", "vision", FormMethod.Post, new { id = "EditForm" }))
+@using (Html.BeginForm("Create", "skill", FormMethod.Post, new { id = "EditForm" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     <fieldset style="padding-left:5px;">
         <div class="form-group">
-                <label for="room" style="width:auto;display:block;">Vision 1</label>
-                <input name="vision1" type="text" id="vision1" value="" class="form-control" style="width:60%;" placeholder="Gõ vision 1"/>
-                @Html.ValidationMessageFor(model => model.vision1)
+                <label for="room" style="width:auto;display:block;">Main Description</label>
+                <textarea name="des" id="des" class="form-control" rows="50" style="height:101px;">
+                </textarea>
+                @Html.ValidationMessageFor(model => model.des)
+        </div>
+        <div class="form-group">
+                <label for="room" style="width:auto;display:block;">Skill 1</label>
+                <input name="skill1" type="text" id="skill1" value="" class="form-control" style="width:60%;" placeholder="Gõ Skill 1"/>
+                @Html.ValidationMessageFor(model => model.skill1)
         </div>
         <div class="form-group">
                 <label for="room" style="width:auto;display:block;">Description 1</label>
@@ -24,9 +30,9 @@
                 @Html.ValidationMessageFor(model => model.des1)
         </div>
         <div class="form-group">
-                <label for="room" style="width:auto;display:block;">Vision 2</label>
-                <input name="vision2" type="text" id="vision2" value="" class="form-control" style="width:60%;" placeholder="Gõ vision 2"/>
-                @Html.ValidationMessageFor(model => model.vision2)
+                <label for="room" style="width:auto;display:block;">Skill 2</label>
+                <input name="skill2" type="text" id="skill2" value="" class="form-control" style="width:60%;" placeholder="Gõ Skill 2"/>
+                @Html.ValidationMessageFor(model => model.skill2)
         </div>
         <div class="form-group">
                 <label for="room" style="width:auto;display:block;">Description 2</label>
@@ -35,9 +41,9 @@
                 @Html.ValidationMessageFor(model => model.des2)
         </div>
         <div class="form-group">
-                <label for="room" style="width:auto;display:block;">Vision 3</label>
-                <input name="vision3" type="text" id="vision3" value="" class="form-control" style="width:60%;" placeholder="Gõ vision 3"/>
-                @Html.ValidationMessageFor(model => model.vision3)
+                <label for="room" style="width:auto;display:block;">Skill 3</label>
+                <input name="skill3" type="text" id="skill3" value="" class="form-control" style="width:60%;" placeholder="Gõ Skill 3"/>
+                @Html.ValidationMessageFor(model => model.skill3)
         </div>
         <div class="form-group">
                 <label for="room" style="width:auto;display:block;">Description 3</label>
@@ -60,9 +66,14 @@
 <script>
 
     function checkField() {
-        if (document.getElementById("vision1").value == "") {
+        if (document.getElementById("des").value == "") {
+            alert("enter description!");
+            document.getElementById("des").focus();
+            return false;
+        }
+        if (document.getElementById("skill1").value == "") {
             alert("enter vision 1!");
-            document.getElementById("vision1").focus();
+            document.getElementById("skill1").focus();
             return false;
         }
         if (document.getElementById("des1").value == "") {
@@ -70,9 +81,9 @@
             document.getElementById("des1").focus();
             return false;
         }
-        if (document.getElementById("vision2").value == "") {
-            alert("enter vision 2!");
-            document.getElementById("vision2").focus();
+        if (document.getElementById("skill2").value == "") {
+            alert("enter skill 2!");
+            document.getElementById("skill2").focus();
             return false;
         }
         if (document.getElementById("des2").value == "") {
@@ -80,9 +91,9 @@
             document.getElementById("des2").focus();
             return false;
         }
-        if (document.getElementById("vision3").value == "") {
-            alert("enter vision 3!");
-            document.getElementById("vision3").focus();
+        if (document.getElementById("skill3").value == "") {
+            alert("enter skill 3!");
+            document.getElementById("skill3").focus();
             return false;
         }
         if (document.getElementById("des3").value == "") {
