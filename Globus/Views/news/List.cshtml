@@ -1,0 +1,59 @@
+﻿@model PagedList.IPagedList<Globus.Models.news>
+@using PagedList.Mvc; 
+@{
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- MAIN CONTENT -->
+        <div id="outermain">
+        	<div class="container">
+        	<section id="maincontent" class="twelve columns">
+            	<section id="content" class="positionleft eight columns alpha">
+                    @foreach (var item in Model) {
+                    <article class="post">
+                    	 <div class="postimg"><img src="@item.image" alt="" class="scale-with-grid"  /></div>
+                         <div class="entry-date">
+                            <div class="posttime">@Globus.Config.getDateYear((DateTime)@item.datepost)</div>
+                            <div class="postdate">@Globus.Config.getDay((DateTime)@item.datepost)</div>
+                         </div>
+                         <div class="entry-text">
+                             <h2 class="posttitle"><a href="/news/@Globus.Config.unicodeToNoMark(@item.title)-@item.id">@item.title</a></h2>                             
+                             <div class="entry-content">
+                             <p>@item.des</p>
+                             <a href="/news/@Globus.Config.unicodeToNoMark(@item.title)-@item.id" class="button ">Read More</a>
+                            </div>
+                        </div> 
+                         <div class="clear"></div>     
+                    </article>
+                    }
+                    <div class="pagenavi">
+                        <a class="prev" href="/News/List?page=@ViewBag.ppage">&larr; last preview</a>
+                        <a class="next" href="/News/List?page=@ViewBag.npage">next preview &rarr;</a>
+                    </div>
+                    
+                    
+				</section>
+                
+                <aside id="sidebar" class="positionright four columns omega">
+                    <ul>
+                        <li class="widget-container">
+                            <h2 class="widget-title">Search</h2>
+                            <div class="textwidget">Enter keyword</div>
+                        </li>
+                        <li class="widget-container">
+                            <form method="get" id="searchform" action="#">
+                                <div class="bgsearch">
+                                <input type="text" name="s" id="s" value="Type and search..." onFocus="if (this.value == 'Type and search...')this.value = '';" onBlur="if (this.value == '')this.value = 'Type and search...';" /> 
+                                <input type="button" class="searchbutton" value="" />
+                                </div>
+                            </form>
+                        </li>
+                       
+                 	</ul>
+				</aside>	
+                <div class="clear"></div><!-- clear float --> 
+            </section>
+            </div>
+        </div>
+        <!-- END MAIN CONTENT -->

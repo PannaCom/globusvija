@@ -17,6 +17,7 @@ namespace Globus
         public static string SlideImagePath = "/Images/Slide";
         public static string AboutImagePath = "/Images/About";
         public static string NewsImagePath = "/Images/News";
+        public static int PageSize = 2;
         //convert tieng viet thanh khong dau va them dau -
         public static string unicodeToNoMark(string input)
         {
@@ -42,6 +43,25 @@ namespace Globus
             input = input.Replace("-", "").Replace(":", "").Replace(",", "").Replace("_", "").Replace("'", "").Replace("\"", "").Replace(";", "").Replace("”", "").Replace(".", "").Replace("%", "");
             return input;
         }
-
+        public static string getDateYear(DateTime d) {
+            try
+            {
+                return d.ToString("MM/yyyy");
+            }
+            catch (Exception ex) {
+                return "";
+            }
+        }
+        public static string getDay(DateTime d)
+        {
+            try
+            {
+                return d.ToString("dd");
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+        }
     }
 }

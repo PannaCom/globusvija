@@ -72,6 +72,7 @@
           <Property Name="des" Type="nvarchar" MaxLength="550" />
           <Property Name="fullcontent" Type="ntext" />
           <Property Name="image" Type="nvarchar" MaxLength="250" />
+          <Property Name="datepost" Type="datetime" />
         </EntityType>
         <EntityType Name="project">
           <Key>
@@ -130,10 +131,10 @@
           <EntitySet Name="slides" EntityType="DB_9C4C62_globusModel.slide" />
           <EntitySet Name="abouts" EntityType="DB_9C4C62_globusModel.about" />
           <EntitySet Name="contacts" EntityType="DB_9C4C62_globusModel.contact" />
-          <EntitySet Name="news" EntityType="DB_9C4C62_globusModel.news" />
           <EntitySet Name="visions" EntityType="DB_9C4C62_globusModel.vision" />
           <EntitySet Name="hotlines" EntityType="DB_9C4C62_globusModel.hotline" />
           <EntitySet Name="skills" EntityType="DB_9C4C62_globusModel.skill" />
+          <EntitySet Name="news" EntityType="DB_9C4C62_globusModel.news" />
         </EntityContainer>
         <EntityType Name="download">
           <Key>
@@ -195,16 +196,6 @@
           <Property Type="Double" Name="lon" />
           <Property Type="Double" Name="lat" />
         </EntityType>
-        <EntityType Name="news">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="title" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="des" MaxLength="550" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="fullcontent" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="image" MaxLength="250" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="vision">
           <Key>
             <PropertyRef Name="id" />
@@ -236,6 +227,17 @@
           <Property Type="String" Name="des2" MaxLength="550" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="skill3" MaxLength="550" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="des3" MaxLength="550" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="news">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="title" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="des" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="fullcontent" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="image" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="datepost" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -309,17 +311,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="news">
-            <EntityTypeMapping TypeName="DB_9C4C62_globusModel.news">
-              <MappingFragment StoreEntitySet="news">
-                <ScalarProperty Name="image" ColumnName="image" />
-                <ScalarProperty Name="fullcontent" ColumnName="fullcontent" />
-                <ScalarProperty Name="des" ColumnName="des" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="visions">
             <EntityTypeMapping TypeName="DB_9C4C62_globusModel.vision">
               <MappingFragment StoreEntitySet="vision">
@@ -351,6 +342,18 @@
                 <ScalarProperty Name="des1" ColumnName="des1" />
                 <ScalarProperty Name="skill1" ColumnName="skill1" />
                 <ScalarProperty Name="des" ColumnName="des" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="news">
+            <EntityTypeMapping TypeName="DB_9C4C62_globusModel.news">
+              <MappingFragment StoreEntitySet="news">
+                <ScalarProperty Name="datepost" ColumnName="datepost" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="fullcontent" ColumnName="fullcontent" />
+                <ScalarProperty Name="des" ColumnName="des" />
+                <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
