@@ -18,7 +18,7 @@ body {color:#888;}
 /* Container */
 #outercontainer{border-top:solid 1px #e5e5e5}
 #outerheader {
-    background:#f6f6f6;
+    /*background:#f6f6f6;*/
 	border-top:solid 1px #fff; 
     border-bottom: 1px solid #e5e5e5;
 }

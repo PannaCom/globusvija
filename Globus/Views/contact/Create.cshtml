@@ -1,0 +1,58 @@
+﻿@model Globus.Models.contact
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Add New Contact</h2>
+<script src="/Scripts/ckeditor/ckeditor.js"></script>
+@using (Html.BeginForm("Create", "contact", FormMethod.Post, new { id = "EditForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset style="padding-left:5px;">
+        <div class="form-group">
+                <label for="room" style="width:auto;display:block;">Description</label>
+                <textarea name="des" id="des" class="form-control" >
+                </textarea>
+                @Html.ValidationMessageFor(model => model.des)
+        </div>
+        <div class="form-group">
+                 <label for="room" style="width:auto;display:block;">Full Content</label>
+                <textarea name="fullcontent" id="fullcontent" class="form-control" rows="50" style="height:101px;">
+                </textarea>
+                 <script>
+                     CKEDITOR.replace('fullcontent');
+                </script>
+                @Html.ValidationMessageFor(model => model.fullcontent)
+        </div>
+        <div class="col-md-6" style="text-align:center;">
+            <input type="button" onclick="checkField();" value="Create" style="height:50px;width:100px;"/>
+        </div>
+    </fieldset>
+}
+<div id="loadingImage" name="loadingImage" style="z-index:1000;position:fixed;left:40%;top:30%;width:32px;height:32px;display:none;">
+    <img src="/Images/loading.gif">
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script>
+
+    function checkField() {
+       
+        if (document.getElementById("des").value == "") {
+            alert("enter description!");
+            document.getElementById("des").focus();
+            return false;
+        }
+        if (document.getElementById("fullcontent").value == "") {
+            alert("enter full content!");
+            document.getElementById("fullcontent").focus();
+            return false;
+        }
+      
+        document.getElementById("EditForm").submit();
+    }
+
+</script>

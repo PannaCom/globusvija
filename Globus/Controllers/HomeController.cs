@@ -141,8 +141,15 @@ namespace Globus.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
+            //ViewBag.Message = "Your contact page.";
+            var p = (from q in db.contacts select new { des = q.des, fullcontent = q.fullcontent }).FirstOrDefault();
+            try
+            {
+                ViewBag.des = p.des;
+                ViewBag.fullcontent = p.fullcontent;
+            }
+            catch (Exception ex) { 
+            }
             return View();
         }
     }
