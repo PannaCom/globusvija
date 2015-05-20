@@ -107,6 +107,27 @@ namespace Globus.Controllers
 
             }
             ViewBag.vision = vision;
+            string service = "";
+            try
+            {
+                var p4 = (from q in db.services select new { name=q.name,id=q.id}).OrderBy(o => o.id).ToList();
+                for (int i = 0; i < p4.Count; i++)
+                {
+                    var it = p4[i];
+                    service += "<li>";
+                    //service += "<img src=\"/Content/images/icon/date.png\"  class=\"alignleft\">";
+                    service += "<div class=\"lp\">";
+                    service += "<h2 class=\"trigger\"><span>"+it.name+"</span></h2>";//"<h3><a href=\"#\">" + it.name + "</a></h3>";
+                    service += "</div>";
+                    service += "</li>";
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            ViewBag.service = service;
             return View();
         }
 

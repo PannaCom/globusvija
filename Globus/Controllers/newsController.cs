@@ -77,6 +77,7 @@ namespace Globus.Controllers
         {
             if (ModelState.IsValid)
             {
+                news.datepost = DateTime.Now;
                 db.news.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");

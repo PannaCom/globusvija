@@ -1,0 +1,44 @@
+﻿@model Globus.Models.service
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Update Service</h2>
+
+@using (Html.BeginForm("Edit", "service", FormMethod.Post, new { id = "EditForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset style="padding-left:5px;">
+        <div class="form-group">
+                <label for="room" style="width:auto;display:block;">name</label>
+                <input name="name" type="text" id="name" value="@Model.name" class="form-control" style="width:60%;" placeholder="Gõ title"/>
+                @Html.ValidationMessageFor(model => model.name)
+        </div>
+        <div class="col-md-6" style="text-align:center;">
+            <input type="button" onclick="checkField();" value="Update" style="height:50px;width:100px;"/>
+        </div>
+    </fieldset>
+}
+<div id="loadingImage" name="loadingImage" style="z-index:1000;position:fixed;left:40%;top:30%;width:32px;height:32px;display:none;">
+    <img src="/Images/loading.gif">
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script>
+
+    function checkField() {
+        if (document.getElementById("name").value == "") {
+            alert("enter name!");
+            document.getElementById("name").focus();
+            return false;
+        }
+
+        document.getElementById("EditForm").submit();
+    }
+
+</script>
