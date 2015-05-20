@@ -80,7 +80,7 @@ h1, h2, h3, h4, h5, h6{color:#4e5b70;}
 /* Form */
 input[type="text"],
 textarea, input[type="password"], select{
-	border:solid 1px #eeeeee;
+	border:solid 1px #4e5b70;
 	color:#888;
 }
 

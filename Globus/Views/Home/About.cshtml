@@ -1,1 +1,41 @@
-﻿
+﻿ <!-- MAIN CONTENT -->
+        <div id="outermain">
+        	<div class="container">
+        	<section id="maincontent" class="twelve columns">
+            	<section id="content" class="positionleft eight columns alpha">
+					<article>
+                        @Html.Raw(ViewBag.about)
+					</article>
+                    <div class="separator line"><div></div></div>
+				</section>
+                
+                <aside id="sidebar" class="positionright four columns omega">
+                    <ul>
+                        <li class="widget-container">
+                            <h2 class="widget-title">Our Skills</h2>
+                            <p>@Html.Raw(@ViewBag.des)</p>
+                            <ul class="row-list2">
+                                <li>
+                                    <span class="circle alignleft">1</span>
+                                    <h4>@Html.Raw(@ViewBag.skill1).</h4>
+                                    <div class="indentleft">@Html.Raw(@ViewBag.des1).</div>
+                                </li>
+                                <li>
+                                    <span class="circle alignleft">2</span>
+                                    <h4>@Html.Raw(@ViewBag.skill2).</h4>
+                                    <div class="indentleft">@Html.Raw(@ViewBag.des2).</div>
+                                </li>
+                                <li>
+                                    <span class="circle alignleft">3</span>
+                                    <h4>@Html.Raw(@ViewBag.skill3).</h4>
+                                    <div class="indentleft">@Html.Raw(@ViewBag.des3).</div>
+                                </li>
+                            </ul>
+                        </li>
+                 	</ul>
+				</aside>	
+                <div class="clear"></div><!-- clear float --> 
+            </section>
+            </div>
+        </div>
+        <!-- END MAIN CONTENT -->

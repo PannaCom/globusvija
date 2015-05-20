@@ -112,7 +112,29 @@ namespace Globus.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
+            try
+            {
+                var p = (from q in db.abouts select new { title = q.title, des = q.des, fulllcontent = q.fullcontent,image=q.image }).FirstOrDefault();
+                string about="";
+                about += "<p><img src=\"" + p.image + "\" alt=\"" + p.title + "\" class=\"scale-with-grid\"/></p>";
+                about+="<h3>"+p.title+"</h3>";
+                about+="<p>"+p.des+"</p>";
+                about += "<p>" + p.fulllcontent + "</p>";
+                ViewBag.about = about;
+                var p2 = (from q in db.skills select new { des = q.des, skill1 = q.skill1, des1 = q.des1, skill2 = q.skill2, des2 = q.des2, skill3 = q.skill3, des3 = q.des3}).FirstOrDefault();
+                ViewBag.des = p2.des;
+                ViewBag.skill1 = p2.skill1;
+                ViewBag.skill2 = p2.skill2;
+                ViewBag.skill3 = p2.skill3;
+                ViewBag.des1 = p2.des1;
+                ViewBag.des2 = p2.des2;
+                ViewBag.des3 = p2.des3;
+
+            }
+            catch (Exception ex) { 
+
+            }
+
 
             return View();
         }
