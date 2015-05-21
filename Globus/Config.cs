@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
-
+using Globus.Models;
 namespace Globus
 {
     public class Config
@@ -18,6 +18,7 @@ namespace Globus
         public static string AboutImagePath = "/Images/About";
         public static string NewsImagePath = "/Images/News";
         public static int PageSize = 2;
+        private static DB_9C4C62_globusEntities db = new DB_9C4C62_globusEntities();
         //convert tieng viet thanh khong dau va them dau -
         public static string unicodeToNoMark(string input)
         {
@@ -37,6 +38,16 @@ namespace Globus
             input = input.Replace(" ", "-");
             input = input.Replace("--", "-");
             return input;
+        }
+        public static string getTheHotline() {
+            try
+            {
+                var p = (from q in db.hotlines select new { line = q.line }).FirstOrDefault();
+                return p.line;
+            }
+            catch (Exception ex) {
+                return "";
+            }
         }
         public static string removeSpecialChar(string input)
         {
