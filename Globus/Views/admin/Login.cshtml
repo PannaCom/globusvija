@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div style="text-align:center;">
+    <div style="width:100%;">
+      <h1 >Globus Administrator System</h1>
+    </div>
+    <h2 >Login</h2>
+    <div style="width:100%;text-align:center;">
+    <form class="clearfix mt50" role="form" method="post" name="contactform" id="contactform" >
+          <div class="row">            
+              <div class="form-group" >
+                <label for="name" accesskey="U"><span class="required">*</span> User</label>
+                <input name="name" type="text" id="name" class="form-control" value="" style="width:99%;"/>
+              </div>
+              <div class="form-group" >
+                <label for="email" accesskey="E"><span class="required">*</span> Password</label>
+                <input name="pass" type="password" id="pass" value="" class="form-control" style="width:99%;"/>
+              </div>            
+              <div class="form-group" >
+                 <button type="button" class="btn btn-info" onclick="Login();">Login</button>
+              </div>            
+          </div>
+    </form>
+    </div>
+</div>
+<script>
+    function Login() {
+        var formdata = new FormData(); //FormData object
+        var name = document.getElementById("name").value;
+        var pass = document.getElementById("pass").value;
+        formdata.append("name", name);
+        formdata.append("pass", pass);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/user/Login');
+        xhr.send(formdata);
+        var content = "";
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                if (xhr.responseText == 0) {
+                    alert("Incorrect username or password!");
+                } else {
+                    window.location.href = "/admin/Index";
+                }
+            }
+        }
+    }
+</script>

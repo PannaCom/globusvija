@@ -16,6 +16,7 @@
         <EntityTypeShape EntityType="DB_9C4C62_globusModel.skill" Width="1.5" PointX="7.8666397705053166" PointY="18.110141941397519" />
         <EntityTypeShape EntityType="DB_9C4C62_globusModel.news" Width="1.5" PointX="9.49330815369883" PointY="0.28908869637599621" />
         <EntityTypeShape EntityType="DB_9C4C62_globusModel.service" Width="1.5" PointX="7.7008197138555445" PointY="14.180626786398062" />
+        <EntityTypeShape EntityType="DB_9C4C62_globusModel.user" Width="1.5" PointX="4.0548684727656044" PointY="18.551262849267228" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

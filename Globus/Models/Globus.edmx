@@ -16,6 +16,7 @@
           <EntitySet Name="service" EntityType="DB_9C4C62_globusModel.Store.service" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="skills" EntityType="DB_9C4C62_globusModel.Store.skills" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="slide" EntityType="DB_9C4C62_globusModel.Store.slide" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="user" EntityType="DB_9C4C62_globusModel.Store.user" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="vision" EntityType="DB_9C4C62_globusModel.Store.vision" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
         <EntityType Name="about">
@@ -116,6 +117,14 @@
           <Property Name="no" Type="int" />
           <Property Name="link" Type="nvarchar" MaxLength="150" />
         </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="pass" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="vision">
           <Key>
             <PropertyRef Name="id" />
@@ -144,6 +153,7 @@
           <EntitySet Name="skills" EntityType="DB_9C4C62_globusModel.skill" />
           <EntitySet Name="news" EntityType="DB_9C4C62_globusModel.news" />
           <EntitySet Name="services" EntityType="DB_9C4C62_globusModel.service" />
+          <EntitySet Name="users" EntityType="DB_9C4C62_globusModel.user" />
         </EntityContainer>
         <EntityType Name="download">
           <Key>
@@ -254,6 +264,14 @@
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="name" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="pass" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -377,6 +395,15 @@
           <EntitySetMapping Name="services">
             <EntityTypeMapping TypeName="DB_9C4C62_globusModel.service">
               <MappingFragment StoreEntitySet="service">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="DB_9C4C62_globusModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="pass" ColumnName="pass" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>

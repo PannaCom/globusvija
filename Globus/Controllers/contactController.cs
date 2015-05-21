@@ -18,6 +18,7 @@ namespace Globus.Controllers
 
         public ActionResult Index()
         {
+            if (Config.getCookie("logged") == "") return RedirectToAction("Login", "Admin");
             return View(db.contacts.ToList());
         }
 
@@ -39,6 +40,7 @@ namespace Globus.Controllers
 
         public ActionResult Create()
         {
+            if (Config.getCookie("logged") == "") return RedirectToAction("Login", "Admin");
             return View();
         }
 
@@ -65,6 +67,7 @@ namespace Globus.Controllers
 
         public ActionResult Edit(int id = 0)
         {
+            if (Config.getCookie("logged") == "") return RedirectToAction("Login", "Admin");
             contact contact = db.contacts.Find(id);
             if (contact == null)
             {
@@ -95,6 +98,7 @@ namespace Globus.Controllers
 
         public ActionResult Delete(int id = 0)
         {
+            if (Config.getCookie("logged") == "") return RedirectToAction("Login", "Admin");
             contact contact = db.contacts.Find(id);
             if (contact == null)
             {

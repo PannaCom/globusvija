@@ -1,28 +1,37 @@
-﻿@model IEnumerable<Globus.Models.news>
+﻿@model PagedList.IPagedList<Globus.Models.news>
+@using PagedList.Mvc; 
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<h2>Index</h2>
+<h2>News Management</h2>
+<div>
+    <form method="get" id="searchform" action="#">
+       <div class="bgsearch">
+       <input type="text" name="keyword" id="keyword" value="Type and search..." onFocus="if (this.value == 'Type and search...')this.value = '';" onBlur="if (this.value == '')this.value = 'Type and search...';" /> 
+       <input type="button" class="searchbutton" style="float:left;right:auto;margin-left:5px;cursor:pointer;" onclick="search();"/>
+       </div>
+   </form>
+</div>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.title)
+            title
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.des)
+            des
         </th>        
         <th>
-            @Html.DisplayNameFor(model => model.image)
+            image
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+ @foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.title)
@@ -42,3 +51,13 @@
 }
 
 </table>
+<div class="pagenavi">
+      <a class="prev" href="/News/Index?keyword=@ViewBag.keyword&page=@ViewBag.ppage">&larr; last preview</a>
+      <a class="next" href="/News/Index?keyword=@ViewBag.keyword&page=@ViewBag.npage">next preview &rarr;</a>
+</div>
+<script>
+    function search() {
+        var keyword = document.getElementById("keyword").value;
+        window.location.href = "/news/index?keyword=" + keyword;
+    }
+</script>

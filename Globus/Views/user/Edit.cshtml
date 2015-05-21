@@ -1,0 +1,46 @@
+﻿@model Globus.Models.user
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2>Update User</h2>
+@using (Html.BeginForm("Edit", "user", FormMethod.Post, new { id = "EditForm" })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <div class="col-md-6">
+              <div class="form-group">
+                <label for="room" style="width:auto;display:block;">user</label>                
+                 <input name="name" type="text" id="name" value="@Model.name" class="form-control"/>                     
+              </div>
+        </div>
+        <div class="col-md-6">
+              <div class="form-group">
+                <label for="room" style="width:auto;display:block;">pass</label>                
+                 <input name="pass" type="password" id="pass" value="" class="form-control"/>                     
+              </div>
+        </div>
+        <div class="col-md-6" style="text-align:center;">
+            <input type="button" onclick="checkField();" value="Update" style="height:50px;width:100px;"/>
+        </div>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script>
+    function checkField() {
+        if (document.getElementById("name").value == "") {
+            alert("Nhập username!");
+            document.getElementById("name").focus();
+            return false;
+        }
+        if (document.getElementById("pass").value == "") {
+            alert("Nhập pass!");
+            document.getElementById("pass").focus();
+            return false;
+        }
+        document.getElementById("EditForm").submit();
+    }
+</script>

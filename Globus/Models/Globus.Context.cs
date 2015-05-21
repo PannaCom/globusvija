@@ -36,5 +36,6 @@ namespace Globus.Models
         public DbSet<skill> skills { get; set; }
         public DbSet<news> news { get; set; }
         public DbSet<service> services { get; set; }
+        public DbSet<user> users { get; set; }
     }
 }

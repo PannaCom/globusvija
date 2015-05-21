@@ -28,8 +28,8 @@
                     </article>
                     }
                     <div class="pagenavi">
-                        <a class="prev" href="/News/List?page=@ViewBag.ppage">&larr; last preview</a>
-                        <a class="next" href="/News/List?page=@ViewBag.npage">next preview &rarr;</a>
+                        <a class="prev" href="/News/List?keyword=@ViewBag.keyword&page=@ViewBag.ppage">&larr; last preview</a>
+                        <a class="next" href="/News/List?keyword=@ViewBag.keyword&page=@ViewBag.npage">next preview &rarr;</a>
                     </div>
                     
                     
@@ -44,8 +44,8 @@
                         <li class="widget-container">
                             <form method="get" id="searchform" action="#">
                                 <div class="bgsearch">
-                                <input type="text" name="s" id="s" value="Type and search..." onFocus="if (this.value == 'Type and search...')this.value = '';" onBlur="if (this.value == '')this.value = 'Type and search...';" /> 
-                                <input type="button" class="searchbutton" value="" />
+                                <input type="text" name="keyword" id="keyword" value="Type and search..." onFocus="if (this.value == 'Type and search...')this.value = '';" onBlur="if (this.value == '')this.value = 'Type and search...';" /> 
+                                <input type="button" style="cursor:pointer;" class="searchbutton" onclick="search();"/>
                                 </div>
                             </form>
                         </li>
@@ -57,3 +57,9 @@
             </div>
         </div>
         <!-- END MAIN CONTENT -->
+<script>
+    function search() {
+        var keyword = document.getElementById("keyword").value;
+        window.location.href = "/news/list?keyword=" + keyword;
+    }
+</script>

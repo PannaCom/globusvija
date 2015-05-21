@@ -18,9 +18,23 @@ namespace Globus.Controllers
         //
         // GET: /news/
 
-        public ActionResult Index()
+        public ActionResult Index(string keyword, int? page)
         {
-            return View(db.news.ToList());
+            if (Config.getCookie("logged") == "") return RedirectToAction("Login", "Admin");
+            //Lấy ra các tin
+            string word = keyword;
+            if (keyword == null) word = "";
+            var p = (from q in db.news where q.title.Contains(word) || q.des.Contains(word) || q.fullcontent.Contains(word) select q).OrderByDescending(o => o.id).Take(1000);
+            int pageSize = Config.PageSize;
+            int pageNumber = (page ?? 1);
+            if (page == null) page = 1;
+            if (page <= 0) page = 1;
+            ViewBag.page = page;
+            ViewBag.ppage = page - 1;
+            ViewBag.npage = page + 1;
+            ViewBag.keyword = keyword;
+            if (pageNumber <= 0) pageNumber = 1;
+            return View(p.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult List(string keyword,int? page)
         {
@@ -35,6 +49,7 @@ namespace Globus.Controllers
             ViewBag.page = page;
             ViewBag.ppage = page-1;
             ViewBag.npage = page + 1;
+            ViewBag.keyword = keyword;
             if (pageNumber <= 0) pageNumber = 1;            
             return View(p.ToPagedList(pageNumber, pageSize));
         }
@@ -64,6 +79,7 @@ namespace Globus.Controllers
 
         public ActionResult Create()
         {
+            if (Config.getCookie("logged") == "") return RedirectToAction("Login", "Admin");
             return View();
         }
 
@@ -133,6 +149,7 @@ namespace Globus.Controllers
 
         public ActionResult Edit(int id = 0)
         {
+            if (Config.getCookie("logged") == "") return RedirectToAction("Login", "Admin");
             news news = db.news.Find(id);
             if (news == null)
             {
@@ -163,6 +180,7 @@ namespace Globus.Controllers
 
         public ActionResult Delete(int id = 0)
         {
+            if (Config.getCookie("logged") == "") return RedirectToAction("Login", "Admin");
             news news = db.news.Find(id);
             if (news == null)
             {

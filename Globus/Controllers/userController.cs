@@ -6,113 +6,140 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Globus.Models;
+using System.Security.Cryptography;
 
 namespace Globus.Controllers
 {
-    public class skillController : Controller
+    public class userController : Controller
     {
         private DB_9C4C62_globusEntities db = new DB_9C4C62_globusEntities();
 
         //
-        // GET: /skill/
+        // GET: /user/
 
         public ActionResult Index()
         {
             if (Config.getCookie("logged") == "") return RedirectToAction("Login", "Admin");
-            return View(db.skills.ToList());
+            return View(db.users.ToList());
         }
 
         //
-        // GET: /skill/Details/5
+        // GET: /user/Details/5
 
         public ActionResult Details(int id = 0)
         {
-            skill skill = db.skills.Find(id);
-            if (skill == null)
+            user user = db.users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(skill);
+            return View(user);
         }
 
         //
-        // GET: /skill/Create
+        // GET: /user/Create
 
         public ActionResult Create()
         {
+            if (Config.getCookie("logged") == "") return RedirectToAction("Login", "Admin");
             return View();
         }
 
         //
-        // POST: /skill/Create
+        // POST: /user/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(skill skill)
+        public ActionResult Create(user user)
         {
             if (ModelState.IsValid)
             {
-                db.skills.Add(skill);
+                string pass = user.pass;
+                MD5 md5Hash = MD5.Create();
+                string hash = Config.GetMd5Hash(md5Hash, pass);
+                user.pass = hash;
+                db.users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(skill);
+            return View(user);
         }
 
         //
-        // GET: /skill/Edit/5
+        // GET: /user/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
             if (Config.getCookie("logged") == "") return RedirectToAction("Login", "Admin");
-            skill skill = db.skills.Find(id);
-            if (skill == null)
+            user user = db.users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(skill);
+            return View(user);
         }
 
         //
-        // POST: /skill/Edit/5
+        // POST: /user/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(skill skill)
+        public ActionResult Edit(user user)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(skill).State = EntityState.Modified;
+                string pass = user.pass;
+                MD5 md5Hash = MD5.Create();
+                string hash = Config.GetMd5Hash(md5Hash, pass);
+                user.pass = hash;
+                db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(skill);
+            return View(user);
         }
-
+        [HttpPost]
+        public string Login(string name, string pass)
+        {
+            MD5 md5Hash = MD5.Create();
+            pass = Config.GetMd5Hash(md5Hash, pass);
+            var p = (from q in db.users where q.name.Contains(name) && q.pass.Contains(pass) select q.name).SingleOrDefault();
+            if (p != null && p != "")
+            {
+                //Ghi ra cookie
+                Config.setCookie("logged", "logged");
+                return "1";
+            }
+            else
+            {
+                return "0";
+            }
+            return "0";
+        }
         //
-        // GET: /skill/Delete/5
+        // GET: /user/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
             if (Config.getCookie("logged") == "") return RedirectToAction("Login", "Admin");
-            skill skill = db.skills.Find(id);
-            if (skill == null)
+            user user = db.users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(skill);
+            return View(user);
         }
 
         //
-        // POST: /skill/Delete/5
+        // POST: /user/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            skill skill = db.skills.Find(id);
-            db.skills.Remove(skill);
+            user user = db.users.Find(id);
+            db.users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
