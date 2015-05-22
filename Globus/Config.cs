@@ -51,6 +51,17 @@ namespace Globus
                 return "";
             }
         }
+        public static string smoothDes(string des) {
+            try
+            {
+                if (des == null || des == "") return "";
+                if (des.Length <= 151) return des;
+                else return des.Substring(0, 150)+"...";
+            }
+            catch (Exception ex) {
+                return "";
+            }
+        }
         public static string GetMd5Hash(MD5 md5Hash, string input)
         {
 
