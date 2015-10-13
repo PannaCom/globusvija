@@ -9,6 +9,7 @@ using Globus.Models;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using PagedList;
+using System.Collections;
 namespace Globus.Controllers
 {
     public class newsController : Controller
@@ -82,7 +83,42 @@ namespace Globus.Controllers
             if (Config.getCookie("logged") == "") return RedirectToAction("Login", "Admin");
             return View();
         }
+        Rss.ItemXml[] arrNews = new Rss.ItemXml[200];
+        public string autoCrawlNews() {
+            try
+            {
+                ArrayList al = new ArrayList();
+                Rss rss = null;
+                al.Add("http://www.economist.com/topics/economics/index.xml");
+                al.Add("http://sg.businesstimes.feedsportal.com/c/34206/f/673215/index.rss");
+                al.Add("http://www.efinancialnews.com/tradingandtechnology/rss");
+                for (int i = 0; i < al.Count; i++) {
+                    rss = new Rss(al[i].ToString());
+                    arrNews = rss.getRssItem();
+                    rss = null;
+                    for (int j = 0; j < arrNews.Length; j++) {
+                        string tempTitle = arrNews[j].title;
+                        bool n = db.news.Any(o => o.title.Equals(tempTitle));
+                        if (!n)
+                        {
+                            news p = new news();
+                            p.title = arrNews[j].title;
+                            p.des = arrNews[j].description;
+                            p.link = arrNews[j].link;
+                            p.datepost = DateTime.Now;
+                            db.news.Add(p);
+                            db.SaveChanges();
+                        }
+                        else break;
+                    }                    
 
+                }
+                return "1";
+            }
+            catch (Exception ex) {
+                return ex.ToString();
+            }
+        }
         //
         // POST: /news/Create
 

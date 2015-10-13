@@ -34,8 +34,8 @@ namespace Globus.Models
         public DbSet<vision> visions { get; set; }
         public DbSet<hotline> hotlines { get; set; }
         public DbSet<skill> skills { get; set; }
-        public DbSet<news> news { get; set; }
         public DbSet<service> services { get; set; }
         public DbSet<user> users { get; set; }
+        public DbSet<news> news { get; set; }
     }
 }

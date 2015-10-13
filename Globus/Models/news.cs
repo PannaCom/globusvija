@@ -19,6 +19,7 @@ namespace Globus.Models
         public string des { get; set; }
         public string fullcontent { get; set; }
         public string image { get; set; }
+        public string link { get; set; }
         public Nullable<System.DateTime> datepost { get; set; }
     }
 }

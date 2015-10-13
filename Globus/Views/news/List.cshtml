@@ -3,6 +3,7 @@
 @{
     
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string link = "";
 }
 
 <!-- MAIN CONTENT -->
@@ -11,8 +12,15 @@
         	<section id="maincontent" class="twelve columns">
             	<section id="content" class="positionleft eight columns alpha">
                     @foreach (var item in Model) {
+                        if (item.link != null)
+                        { link = item.link; }
+                        else { 
+                            link = "/news/" + Globus.Config.unicodeToNoMark(item.title) + "-" + item.id; 
+                        }
                     <article class="post">
-                    	 <div class="postimg"><img src="@item.image" alt="" class="scale-with-grid"  /></div>
+                         @if (item.image!=""){
+                    	    <div class="postimg"><img src="@item.image" alt="" class="scale-with-grid"  /></div>
+                         }
                          <div class="entry-date">
                             <div class="posttime">@Globus.Config.getDateYear((DateTime)@item.datepost)</div>
                             <div class="postdate">@Globus.Config.getDay((DateTime)@item.datepost)</div>
@@ -21,7 +29,7 @@
                              <h2 class="posttitle"><a href="/news/@Globus.Config.unicodeToNoMark(@item.title)-@item.id">@item.title</a></h2>                             
                              <div class="entry-content">
                              <p>@item.des</p>
-                             <a href="/news/@Globus.Config.unicodeToNoMark(@item.title)-@item.id" class="button ">Read More</a>
+                             <a href="@link" class="button ">Read More</a>
                             </div>
                         </div> 
                          <div class="clear"></div>     

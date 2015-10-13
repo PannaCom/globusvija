@@ -54,3 +54,21 @@
             </div>
         </div>
         <!-- END MAIN CONTENT -->
+<script>
+    function autoCrawlNews() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/news/autoCrawlNews');
+            xhr.send();
+            var content = "";
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    if (xhr.responseText=="1"){
+                        //alert("ok");
+                    }else{
+                        //alert("not ok");
+                    }
+                }
+            }
+        }
+    autoCrawlNews();
+</script>
