@@ -26,10 +26,10 @@
                             <div class="postdate">@Globus.Config.getDay((DateTime)@item.datepost)</div>
                          </div>
                          <div class="entry-text">
-                             <h2 class="posttitle"><a href="/news/@Globus.Config.unicodeToNoMark(@item.title)-@item.id">@item.title</a></h2>                             
+                             <h2 class="posttitle"><a href="@link" target="_blank">@item.title</a></h2>                             
                              <div class="entry-content">
-                             <p>@item.des</p>
-                             <a href="@link" class="button ">Read More</a>
+                             <p>@Globus.Config.StripTagsRegex(@item.des)</p>
+                             <a href="@link" class="button " target="_blank">Read More</a>
                             </div>
                         </div> 
                          <div class="clear"></div>     

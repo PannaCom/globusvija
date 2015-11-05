@@ -83,7 +83,7 @@ namespace Globus
                     
                     arrItem[Length].title = title.Trim();
                     arrItem[Length].link = link.Trim();
-                    arrItem[Length].description = description;
+                    arrItem[Length].description = Config.StripTagsRegex(description);
                     
                     Length++;
                 }

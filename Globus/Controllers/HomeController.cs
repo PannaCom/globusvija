@@ -74,7 +74,7 @@ namespace Globus.Controllers
                     }
                     news+="<h3 class=\"smallmargin\">"+it.title+"</h3>";
                     news += "<p>" + Config.smoothDes(it.des) + "</p>";
-                    news+="<p><a href=\""+link+"\" class=\"button\">Read more</a></p>";
+                    news+="<p><a href=\""+link+"\" class=\"button\" target=\"_blank\">Read more</a></p>";
                     news+="</div>";
 
                 }
