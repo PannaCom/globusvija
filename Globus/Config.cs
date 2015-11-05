@@ -51,10 +51,18 @@ namespace Globus
                 return "";
             }
         }
+        /// <summary>
+        /// Remove HTML from string with Regex.
+        /// </summary>
+        public static string StripTagsRegex(string source)
+        {
+            return Regex.Replace(source, "<.*?>", string.Empty);
+        }
         public static string smoothDes(string des) {
             try
             {
                 if (des == null || des == "") return "";
+                des = StripTagsRegex(des);
                 if (des.Length <= 151) return des;
                 else return des.Substring(0, 150)+"...";
             }
